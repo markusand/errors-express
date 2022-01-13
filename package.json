@@ -1,6 +1,6 @@
 {
   "name": "errors-express",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Central error handling for Express",
   "main": "dist/index.js",
   "module": "src/index.js",
@@ -25,8 +25,5 @@
   },
   "peerDependencies": {
     "express": "^4.17.0"
-  },
-  "files": [
-    "lib"
-  ]
+  }
 }
