@@ -1,6 +1,6 @@
 {
   "name": "errors-express",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Central error handling for Express",
   "main": "dist/index.js",
   "module": "src/index.js",
