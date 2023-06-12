@@ -5,19 +5,19 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "scripts": {
-    "build": "babel src -d dist --source-maps && npx tsc",
+    "build": "tsc",
     "prepare": "npm run build"
   },
-  "keywords": ["express", "errors", "handler", "api"],
+  "keywords": [
+    "express",
+    "errors",
+    "handler",
+    "api"
+  ],
   "author": "Marc Vilella <mvilella@obsa.ad> (https://github.com/markusand)",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.16.8",
-    "@babel/core": "^7.16.7",
-    "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.8",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15",
     "typescript": "^5.1.3"
   },
   "dependencies": {

@@ -1,9 +1,9 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
-    "allowJs": true,
+    "module": "commonjs",
+    "target": "ESNext",
     "declaration": true,
-    "emitDeclarationOnly": true,
     "outDir": "dist",
     "declarationMap": true
   }
