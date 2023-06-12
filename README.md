@@ -24,7 +24,7 @@ Use guards to return a custom error response after not found or not allowed meth
 
 ```js
 import express from 'express';
-import errorHandler, { Errors, Guards } from './index.js';
+import errorHandler, { Errors, Guards } from 'errors-express';
 
 const app = express();
 
