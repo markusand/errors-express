@@ -8,14 +8,17 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "keywords": [
-    "express",
-    "errors",
-    "handler",
-    "api"
-  ],
+  "keywords": ["express", "errors", "handler", "api"],
   "author": "Marc Vilella <mvilella@obsa.ad> (https://github.com/markusand)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markusand/errors-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/markusand/errors-express/issues"
+  },
+  "homepage": "https://github.com/markusand/errors-express#readme",
   "devDependencies": {
     "@types/express": "^4.17.17",
     "express": "^4.17.2",
