@@ -100,4 +100,20 @@ describe('Errors', () => {
     expect(error2.message).toBe('Internal server error');
     expect(error2.code).toBe('INTERNAL_SERVER');
   });
+
+  it('should use custom details', () => {
+    const details = [{
+      code: 'VALIDATION_ERROR',
+      message: 'Invalid attributes',
+      ctx: {
+        path: 'email',
+        value: 'loremipsum',
+      }
+    }];
+    const error = Errors.Unprocessable('Invalid parameters', details);
+    expect(error.status).toBe(422);
+    expect(error.message).toBe('Invalid parameters');
+    expect(error.code).not.toBeDefined();
+    expect(error.details).toEqual(details);
+  });
 });

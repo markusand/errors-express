@@ -9,14 +9,15 @@ export default (callback?: ErrorHandlerCallback) => {
     if (res.headersSent) return next(error);
 
     // Notify the client about the error. For security reasons, hide details if not HttpError
-    const { status, code, message } = error instanceof HttpError
+    const { status, code, details, message } = error instanceof HttpError
       ? error
       : {
         status: 500,
         code: 'INTERNAL_ERROR',
         message: Messages.INTERNAL_SERVER,
+        details: undefined,
       };
-    res.status(status).send({ status, code, message })
+    res.status(status).send({ status, code, message, details })
 
     // Call callback if provided
     callback?.(error, req, res);

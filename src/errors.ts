@@ -1,14 +1,16 @@
-import HttpError from './HttpError';
+import HttpError, { type ErrorDetails } from './HttpError';
 import Message from './messages';
 
+type Details = ErrorDetails | string;
+
 export default {
-  BadRequest: (msg = Message.BAD_REQUEST, code?: string) => new HttpError(400, msg, code),
-  Unauthorized: (msg = Message.UNAUTHORIZED, code?: string) => new HttpError(401, msg, code),
-  Forbidden: (msg = Message.FORBIDDEN, code?: string) => new HttpError(403, msg, code),
-  NotFound: (msg = Message.NOT_FOUND, code?: string) => new HttpError(404, msg, code),
-  MethodNotAllowed: (msg = Message.METHOD_NOT_ALLOWED, code?: string) => new HttpError(405, msg, code),
-  Conflict: (msg = Message.CONFLICT, code?: string) => new HttpError(409, msg, code),
-  Unprocessable: (msg = Message.UNPROCESSABLE, code?: string) => new HttpError(422, msg, code),
-  TooManyRequests: (msg = Message.TOO_MANY_REQUESTS, code?: string) => new HttpError(429, msg, code),
-  InternalServer: (msg = Message.INTERNAL_SERVER, code?: string) => new HttpError(500, msg, code),
+  BadRequest: (msg = Message.BAD_REQUEST, details?: Details) => new HttpError(400, msg, details),
+  Unauthorized: (msg = Message.UNAUTHORIZED, details?: Details) => new HttpError(401, msg, details),
+  Forbidden: (msg = Message.FORBIDDEN, details?: Details) => new HttpError(403, msg, details),
+  NotFound: (msg = Message.NOT_FOUND, details?: Details) => new HttpError(404, msg, details),
+  MethodNotAllowed: (msg = Message.METHOD_NOT_ALLOWED, details?: Details) => new HttpError(405, msg, details),
+  Conflict: (msg = Message.CONFLICT, details?: Details) => new HttpError(409, msg, details),
+  Unprocessable: (msg = Message.UNPROCESSABLE, details?: Details) => new HttpError(422, msg, details),
+  TooManyRequests: (msg = Message.TOO_MANY_REQUESTS, details?: Details) => new HttpError(429, msg, details),
+  InternalServer: (msg = Message.INTERNAL_SERVER, details?: Details) => new HttpError(500, msg, details),
 };

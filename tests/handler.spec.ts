@@ -54,4 +54,15 @@ describe('handler', () => {
     expect(status).toHaveBeenCalledWith(404);
     expect(callback).toHaveBeenCalledWith(error, req, res);
   });
+
+  it('should handle error with custom details', () => {
+    const { send, req, res, next } = call();
+    const details = [{
+      code: 'VALIDATION_ERROR',
+      message: 'Provided email is invalid',
+    }];
+    const error = new HttpError(422, 'Invalid parameters', details);
+    handler()(error, req, res, next);
+    expect(send).toHaveBeenCalledWith({ status: 422, message: 'Invalid parameters', details });
+  });
 });

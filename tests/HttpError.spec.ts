@@ -20,4 +20,15 @@ describe('HttpError', () => {
     expect(error.stack).toBeDefined();
     expect(error.stack).toContain('HttpError.spec.ts');
   });
+
+  it('should have error details', () => {
+    const details = [{
+      code: 'invalid_type',
+      path: 'email',
+      message: 'Invalid email address',
+    }];
+    const error = new HttpError(422, 'Unprocessable entity', details);
+    expect(error.details).toBeDefined();
+    expect(error.details?.[0].code).toBe('invalid_type');
+  });
 });
