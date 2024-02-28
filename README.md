@@ -43,11 +43,13 @@ app.listen(process.env.PORT || 3000);
 
 ## Errors
 
-The base error class used by the package is HttpError. Send optional errorCode for error identification (useful for error translation).
+The base error class used by the package is HttpError. Send optional error details, useful for providing context to error handling in frontend.
 
-`HttpError(statusCode, message, errorCode?)`
+`HttpError(statusCode, message, details?)`
 
-Default errors are provided by the package, just include optional message and errorCode.
+Details can be a string or an object that contains an error code, message and a free context object
+
+Default errors are provided by the package, just include optional message and details.
 
 ```javascript
 import { HttpError, Errors } from 'errors-express';
@@ -56,6 +58,14 @@ throw new HttpError(400, 'Invalid request', 'MISSING_PSWD');
 
 throw Errors.NotFound();
 throw Errors.Forbidden('You cannot do this');
+throw Errors.TooManyRequests('You reached the maximum limit or requests', {
+  code: 'REQUEST_LIMIT_REACHED';
+  message: 'You reached the maximum limit or requests';
+  ctx: {
+    maxRequests: 5,
+    retryIn: '1min',
+  };
+});
 ```
 
 | Error | statusCode | Default message |
