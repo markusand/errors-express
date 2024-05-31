@@ -76,9 +76,9 @@ throw Errors.TooManyRequests('You reached the maximum limit or requests', {
 | **NotFound** | 404 | This resource does not exist |
 | **MethodNotAllowed** | 405 | This method is not allowed for this resource |
 | **Conflict** | 409 | There is a conflict with the current state of the resource |
-| **Unprocessable** | 422 | The request is unprocessable
-| **TooManyRequests** | 429 | The maximum number of requests has been exceeded
-| **InternalServer** | 500 | An internal server error occurred
+| **Unprocessable** | 422 | The request is unprocessable |
+| **TooManyRequests** | 429 | The maximum number of requests has been exceeded |
+| **InternalServer** | 500 | An internal server error occurred |
 
 ## Guards
 
