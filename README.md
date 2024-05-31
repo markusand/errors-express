@@ -88,7 +88,8 @@ Guards automatically return an error if none of the previous handlers are called
 import { Guards } from 'errors-express';
 
 app.get('/resource', ResourceController);
-app.all('/resource', Guards.MethodNotAllowed());
+
+app.use(Guards.MethodNotAllowed());
 app.use(Guards.NotFound()),
 ```
 
