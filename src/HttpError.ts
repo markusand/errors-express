@@ -1,4 +1,4 @@
-export type ErrorDetails = Array<{
+export type ErrorDetails = string | Array<{
   code: string;
   message: string;
   ctx?: Record<string, any>;
@@ -10,7 +10,7 @@ export default class HttpError extends Error {
   public readonly details: ErrorDetails | undefined;
   public readonly timestamp: number;
 
-  constructor(status = 400, message = 'Error', details?: ErrorDetails | string) {
+  constructor(status = 400, message = 'Error', details?: ErrorDetails) {
     super(message);
     this.status = status;
     this.timestamp = Date.now();

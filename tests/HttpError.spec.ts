@@ -1,4 +1,6 @@
-import HttpError from '../src/HttpError';
+import HttpError, { type ErrorDetails } from '../src/HttpError';
+
+type ErrorDetail = Exclude<ErrorDetails, string>[number];
 
 describe('HttpError', () => {
   it('should create a default HttpError', () => {
@@ -29,6 +31,6 @@ describe('HttpError', () => {
     }];
     const error = new HttpError(422, 'Unprocessable entity', details);
     expect(error.details).toBeDefined();
-    expect(error.details?.[0].code).toBe('invalid_type');
+    expect((error.details?.[0] as ErrorDetail).code).toBe('invalid_type');
   });
 });
