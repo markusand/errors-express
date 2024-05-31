@@ -6,7 +6,7 @@ describe('HttpError', () => {
   it('should create a default HttpError', () => {
     const error = new HttpError();
     expect(error.status).toBe(400);
-    expect(error.code).toBeUndefined();
+    expect(error.code).toBe('ERROR');
     expect(error.message).toBe('Error');
   });
 

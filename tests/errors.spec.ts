@@ -108,7 +108,7 @@ describe('Errors', () => {
       ctx: {
         path: 'email',
         value: 'loremipsum',
-      }
+      },
     }];
     const error = Errors.Unprocessable('Invalid parameters', details);
     expect(error.status).toBe(422);

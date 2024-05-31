@@ -27,7 +27,7 @@ export const createReq = (path: string, method: string) => ({
                   path: '/resource2',
                   methods: { get: true },
                 },
-                handle: { stack: []},
+                handle: { stack: [] },
               },
             ],
           },

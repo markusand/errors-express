@@ -16,7 +16,7 @@ describe('Guards', () => {
 
   it('should throw 405 error', () => {
     const guard = Guards.MethodNotAllowed();
-    const req = createReq('/resource1', 'PUT') as unknown as Request
+    const req = createReq('/resource1', 'PUT') as unknown as Request;
     const res = { set: jest.fn() } as unknown as Response;
     const next = jest.fn() as NextFunction;
     expect(() => guard(req, res, next)).toThrow(messages.METHOD_NOT_ALLOWED);
@@ -26,7 +26,7 @@ describe('Guards', () => {
 
   it('should throw custom 405 error', () => {
     const guard = Guards.MethodNotAllowed('Method not allowed');
-    const req = createReq('/resource2', 'PUT') as unknown as Request
+    const req = createReq('/resource2', 'PUT') as unknown as Request;
     const res = { set: jest.fn() } as unknown as Response;
     const next = jest.fn() as NextFunction;
     expect(() => guard(req, res, next)).toThrow('Method not allowed');
@@ -36,7 +36,7 @@ describe('Guards', () => {
 
   it('should skip 405 error if path has not handlers', () => {
     const guard = Guards.MethodNotAllowed();
-    const req = createReq('/resource', 'GET') as unknown as Request
+    const req = createReq('/resource', 'GET') as unknown as Request;
     const res = { set: jest.fn() } as unknown as Response;
     const next = jest.fn() as NextFunction;
     expect(() => guard(req, res, next)).not.toThrow();
@@ -44,4 +44,3 @@ describe('Guards', () => {
     expect(next).toHaveBeenCalled();
   });
 });
-
