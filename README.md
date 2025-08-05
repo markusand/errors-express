@@ -32,7 +32,7 @@ app.get('/protected', async (req, res) => {
   throw Errors.Unauthorized('You must first sign in');
 });
 
-app.all('*', Guards.NotFound());
+app.all('*splat', Guards.NotFound());
 
 app.use(errorHandler((error, req) => {
   console.log(`[${req.method} ${req.url}] ${error.message}`);

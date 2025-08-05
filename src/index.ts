@@ -1,4 +1,3 @@
-import 'express-async-errors';
 import HttpError from './HttpError';
 import Errors from './errors';
 import Messages from './messages';
