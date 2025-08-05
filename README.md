@@ -14,6 +14,9 @@ Install together with express
 npm i express errors-express
 ```
 
+> [!WARNING]
+> From v2, this plugin is adapted to work with Express v5. For Express v4 compatibility, use v1.
+
 ## Usage
 
 Import the error handler middleware and place it at the end of the middleware stack. Any error (operational or not) thrown by a controller is handled and sent to the client.
