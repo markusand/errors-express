@@ -6,22 +6,20 @@ type ErrorHandlerCallback = (error: Error | HttpError, req: Request, res: Respon
 
 export default (callback?: ErrorHandlerCallback) => (
   (error: Error | HttpError, req: Request, res: Response, next: NextFunction) => {
-    if (res.headersSent) next(error);
-    else {
-      // Notify the client about the error. For security reasons, hide details if not HttpError
-      const { status, code, details, message } = error instanceof HttpError
-        ? error
-        : {
-          status: 500,
-          code: 'INTERNAL_ERROR',
-          message: Messages.INTERNAL_SERVER,
-          details: undefined,
-        };
+    if (res.headersSent) return next(error);
 
-      res.status(status).send({ status, code, message, details });
+    // Notify the client about the error. For security reasons, hide details if not HttpError
+    const { status, code, details, message } = error instanceof HttpError
+      ? error
+      : {
+        status: 500,
+        code: 'INTERNAL_ERROR',
+        message: Messages.INTERNAL_SERVER,
+        details: undefined,
+      };
 
-      // Call callback if provided
-      callback?.(error, req, res);
-    }
+    res.status(status).send({ status, code, message, details });
+
+    return callback?.(error, req, res);
   }
 );
