@@ -6,6 +6,7 @@
     "declaration": true,
     "outDir": "dist",
     "declarationMap": true,
+    "strict": true,
     "types": ["jest"]
   }
 }

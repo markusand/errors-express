@@ -1,6 +1,0 @@
-{
-  "extends": ["eslint-config-markusand"],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  }
-}
