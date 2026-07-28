@@ -83,6 +83,24 @@ throw Errors.TooManyRequests('You reached the maximum limit or requests', {
 | **TooManyRequests** | 429 | The maximum number of requests has been exceeded |
 | **InternalServer** | 500 | An internal server error occurred |
 
+## Error Adapters
+
+Use adapters to automatically convert domain or third-party errors into HTTP errors at the handler level, avoiding repetitive try/catch blocks.
+
+```javascript
+import errorHandler, { Errors } from 'errors-express';
+import { ZodError } from 'zod';
+
+const zodAdapter = (error: Error) => error instanceof ZodError ? Errors.Unprocessable(error.message) : undefined;
+
+app.use(errorHandler({
+  adapters: [zodAdapter],
+  callback: (error, req) => console.log(`[${req.method} ${req.url}] ${error.message}`),
+}));
+```
+
+Adapters receive any non-HttpError and return an `HttpError` if they handle it, or `undefined` to pass to the next adapter. Unhandled errors fall back to a generic 500.
+
 ## Guards
 
 Guards automatically return an error if none of the previous handlers are called.

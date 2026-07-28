@@ -65,4 +65,43 @@ describe('handler', () => {
     handler()(error, req, res, next);
     expect(send).toHaveBeenCalledWith({ status: 422, message: 'Invalid parameters', details });
   });
+
+  it('should accept an adapters array along with callback', () => {
+    const callback = jest.fn();
+    const { send, req, res, next } = call();
+    const error = new HttpError(404, 'NOT_FOUND'); // No matter the provided error, adapters is empty
+    handler({ adapters: [], callback })(error, req, res, next);
+    expect(send).toHaveBeenCalledWith({ status: 404,  message: 'NOT_FOUND', code: 'ERROR' });
+    expect(callback).toHaveBeenCalled();
+  });
+
+  it('should handle error with a custom adapter', () => {
+    class InvalidEmailError extends Error {
+      public readonly email: string;
+      constructor(email: string) {
+        super(`Invalid email ${email}`);
+        this.email = email;
+      }
+    };
+
+    const emailErrorAdapter = (error: Error): HttpError | undefined => {
+      if (!(error instanceof InvalidEmailError)) return undefined;
+      const { message, email } = error;
+      const details = { code: 'INVALID_EMAIL', message, ctx: { email } };
+      return new HttpError(422, message, [details]);
+    };
+
+    const { send, req, res, next } = call();
+    const error = new InvalidEmailError('invalid@email.com');
+    handler({ adapters: [emailErrorAdapter] })(error, req, res, next);
+    expect(send).toHaveBeenCalledWith({
+      status: 422,
+      message: 'Invalid email invalid@email.com',
+      details: [{
+        code: 'INVALID_EMAIL',
+        message: 'Invalid email invalid@email.com',
+        ctx: { email: 'invalid@email.com' },
+      }],
+    });
+  });
 });
