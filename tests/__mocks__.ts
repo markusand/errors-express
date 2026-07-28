@@ -1,3 +1,14 @@
+import type { Request, Response, NextFunction } from 'express';
+
+export const call = () => {
+  const send = jest.fn();
+  const status = jest.fn(() => ({ send }));
+  const req = {} as unknown as Request;
+  const res = { status, send } as unknown as Response;
+  const next = jest.fn() as unknown as NextFunction;
+  return { send, status, req, res, next };
+};
+
 export const createReq = (path: string, method: string) => ({
   path,
   method,

@@ -101,6 +101,32 @@ app.use(errorHandler({
 
 Adapters receive any non-HttpError and return an `HttpError` if they handle it, or `undefined` to pass to the next adapter. Unhandled errors fall back to a generic 500.
 
+## Route Error Wrapper
+
+Use `withErrors` to create reusable error mappers for route handlers. Define mappings once and apply them to multiple controllers that share the same error types.
+
+```javascript
+import { withErrors, Errors } from 'errors-express';
+
+class UserNotFoundError extends Error {}
+class InvalidNameError extends Error {}
+
+const userErrors = withErrors([
+  [UserNotFoundError, Errors.NotFound('User not found')],
+  [InvalidNameError, e => Errors.Unprocessable(e.message)],
+]);
+
+router.put('/:id', userErrors(async (req, res) => {
+  // ...
+}));
+
+router.delete('/:id', userErrors(async (req, res) => {
+  // ...
+}));
+```
+
+Mappings accept either a static `HttpError` instance or a factory `(error: Error) => HttpError` for dynamic messages. Unmatched errors pass through to the error handler.
+
 ## Guards
 
 Guards automatically return an error if none of the previous handlers are called.
