@@ -17,6 +17,7 @@
     "api"
   ],
   "author": "Marc Vilella <mvilella@gmail.com> (https://github.com/markusand)",
+  "repository":"https://github.com/markusand/errors-express",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.3",
