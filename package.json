@@ -1,6 +1,6 @@
 {
   "name": "errors-express",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Central error handling for Express",
   "main": "dist/index.js",
   "module": "src/index.js",
@@ -16,7 +16,7 @@
     "handler",
     "api"
   ],
-  "author": "Marc Vilella <mvilella@obsa.ad> (https://github.com/markusand)",
+  "author": "Marc Vilella <mvilella@gmail.com> (https://github.com/markusand)",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.3",
